@@ -5,7 +5,10 @@ import com.redis.pojo.StudentPojo;
 import com.redis.repo.StudentRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author kul.paudel
@@ -27,5 +30,11 @@ public class StudentServiceImpl implements StudentService {
                 .rollNo(studentPojo.getRollNo()).build();
         studentRepo.save(student);
         return studentPojo;
+    }
+
+    @Override
+    @Cacheable("students")
+    public List<Student> getStudentList() {
+        return studentRepo.findAll();
     }
 }

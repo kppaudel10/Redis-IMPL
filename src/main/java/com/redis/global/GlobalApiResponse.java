@@ -1,5 +1,6 @@
 package com.redis.global;
 
+import com.redis.pojo.StudentPojo;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,6 @@ import java.util.Objects;
 public class GlobalApiResponse {
 
     private String message;
-    private Objects data;
+    private Object data;
 
 }
