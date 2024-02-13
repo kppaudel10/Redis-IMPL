@@ -2,7 +2,10 @@ package com.redis.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * @author kul.paudel
@@ -12,7 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "student")
-public class Student {
+@Builder
+public class Student implements Serializable {
+    private static final Long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq_gen")
     @SequenceGenerator(name = "student_seq_gen", sequenceName = "student_seq")
@@ -24,5 +29,8 @@ public class Student {
     private String address;
 
     private Integer age;
+
+    @Column(name = "roll_no")
+    private Integer rollNo;
 
 }

@@ -1,7 +1,10 @@
 package com.redis.service;
 
+import com.redis.entity.Student;
 import com.redis.pojo.StudentPojo;
+import com.redis.repo.StudentRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,9 +14,18 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
+    private final StudentRepo studentRepo;
 
     @Override
+    @CacheEvict(value = "student", key = "#studentPojo.rollNo")
     public StudentPojo saveStudent(StudentPojo studentPojo) {
-        return null;
+        Student student = Student.builder()
+                .id(studentPojo.getId())
+                .name(studentPojo.getName())
+                .address(studentPojo.getAddress())
+                .age(studentPojo.getAge())
+                .rollNo(studentPojo.getRollNo()).build();
+        studentRepo.save(student);
+        return studentPojo;
     }
 }

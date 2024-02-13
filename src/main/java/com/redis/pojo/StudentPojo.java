@@ -1,6 +1,8 @@
 package com.redis.pojo;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
@@ -9,6 +11,7 @@ import lombok.NoArgsConstructor;
  */
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class StudentPojo {
 
     private Long id;
@@ -18,4 +21,6 @@ public class StudentPojo {
     private String address;
 
     private Integer age;
+
+    private Integer rollNo;
 }

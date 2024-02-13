@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @created at 2024-02-13
  */
 public interface StudentRepo extends JpaRepository<Student, Long> {
+
 }
