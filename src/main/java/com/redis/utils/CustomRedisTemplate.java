@@ -1,7 +1,8 @@
 package com.redis.utils;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -9,11 +10,10 @@ import java.util.List;
  * @author kul.paudel
  * @created at 2024-02-14
  */
-@Component
+@Service
 @RequiredArgsConstructor
-public class RedisTemplate<T> {
-
-    private final org.springframework.data.redis.core.RedisTemplate<String, List<T>> redisTemplate;
+public class CustomRedisTemplate<T> {
+    private final RedisTemplate<String, List<T>> redisTemplate;
 
     public void saveToCache(List<T> data, String cacheName, String key) {
         redisTemplate.opsForHash().put(cacheName, key, data);
