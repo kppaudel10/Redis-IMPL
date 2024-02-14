@@ -1,9 +1,7 @@
 package com.redis.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -13,9 +11,10 @@ import java.io.Serializable;
  */
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "student")
-@Builder
 public class Student implements Serializable {
     private static final Long serialVersionUID = 1L;
     @Id

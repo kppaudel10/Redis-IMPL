@@ -1,11 +1,15 @@
 package com.redis.controller;
 
-import com.redis.global.GlobalApiResponse;
-import com.redis.pojo.StudentPojo;
+import com.redis.entity.Student;
 import com.redis.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author kul.paudel
@@ -19,13 +23,21 @@ public class StudentController {
 
     private final StudentService studentService;
 
+    @CacheEvict(value = "student", key = "#student.id")
     @PostMapping
-    public GlobalApiResponse saveStudent(@RequestBody StudentPojo studentPojo) {
-        return new GlobalApiResponse("Saved successfully", studentService.saveStudent(studentPojo));
+    public Student saveStudent(@RequestBody Student student) {
+        return studentService.saveStudent(student);
     }
 
+    @Cacheable(value = "students")
     @GetMapping
-    public GlobalApiResponse getStudent() {
-        return new GlobalApiResponse("Fetch successfully", studentService.getStudentList());
+    public List<Student> getStudent() {
+        return studentService.getStudentList();
+    }
+
+    @Cacheable(value = "student", key = "#id")
+    @GetMapping("/{id}")
+    public Student getStudentById(@PathVariable("id") Long id) {
+        return studentService.getStudent(id);
     }
 }

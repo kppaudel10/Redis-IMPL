@@ -11,8 +11,12 @@ import java.util.List;
  */
 public interface StudentService {
 
-    StudentPojo saveStudent(StudentPojo studentPojo);
+    Student saveStudent(Student student);
 
     List<Student> getStudentList();
+
+    Student getStudent(Long id);
+
+
 
 }
