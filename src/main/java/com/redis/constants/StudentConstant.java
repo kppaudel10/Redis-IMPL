@@ -6,6 +6,8 @@ package com.redis.constants;
  */
 public final class StudentConstant {
 
-    public static final String CACHE_NAME = "student";
-    public static final String CACHE_KEY = "id";
+    private StudentConstant(){}
+    public static final String CACHE_NAME = "students";
+    public static final String CACHE_KEY = "student";
+
 }

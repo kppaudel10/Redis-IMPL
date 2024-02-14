@@ -1,7 +1,6 @@
 package com.redis.service;
 
 import com.redis.entity.Student;
-import com.redis.pojo.StudentPojo;
 
 import java.util.List;
 
@@ -16,7 +15,6 @@ public interface StudentService {
     List<Student> getStudentList();
 
     Student getStudent(Long id);
-
 
 
 }

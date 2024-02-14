@@ -32,7 +32,7 @@ public class StudentV2ServiceImpl implements StudentV2Service {
         // first check data is already exits on redis cache or not
         List<Student> studentListFromRedis = customRedisTemplate.findByCacheAndKey(StudentConstant.CACHE_NAME,
                 StudentConstant.CACHE_KEY);
-        if (!studentListFromRedis.isEmpty()) {
+        if (studentListFromRedis != null) {
             return studentListFromRedis;
         } else {
             // fetch student data from database

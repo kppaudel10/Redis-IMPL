@@ -2,6 +2,7 @@ package com.redis.controller;
 
 import com.redis.entity.Student;
 import com.redis.service.StudentService;
+import com.redis.service.StudentV2Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +13,10 @@ import java.util.List;
  * @created at 2024-02-14
  */
 @RestController
-@RequestMapping("/api/v2/student/")
+@RequestMapping("/api/v2/student")
 @RequiredArgsConstructor
 public class StudentV2Controller {
-    private final StudentService studentService;
+    private final StudentV2Service studentService;
 
     @PostMapping
     public Student saveStudent(@RequestBody Student student) {
